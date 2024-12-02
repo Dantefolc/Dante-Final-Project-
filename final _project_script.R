@@ -24,49 +24,42 @@ View(dataset)
 ##################################################################################
 ############### Table 1: descriptive statistics    ####################   
 ##################################################################################
-table(dataset$song_length)
-mean(dataset$song_length)
-sd(dataset$song_length)
+dataset$lnwealth <- log(dataset$wealth)
+dataset_nomissing <- na.omit(dataset_nomissing[, c("wealth", "age", "christian",  "lnwealth", "abortion")])
 
-table(dataset$number_of_listens)
-mean(dataset$number_of_listens)
-sd(dataset$number_of_listens)
 
-table(dataset$song_descriptor)
+table(dataset_nomissing$abortion)
 
-table(dataset$song_topic)
 
-table(dataset$personal_enjoyment)
-mean(dataset$personal_enjoyment)
-sd(dataset$personal_enjoyment)
+summary(dataset_nomissing$wealth)
+sd(dataset_nomissing$wealth)
 
-table(dataset$album)
+
 
 ##################################################################################
 #################### Figure 1: boxplot             ####################   
 ##################################################################################
-dataset$lnwealth <- log(dataset$wealth)
-dataset_anova <- na.omit(dataset[, c("lnwealth", "abortion")])
 
 
-anova <- aov(dataset_anova$lnwealth ~ dataset_anova$abortion) 
+
+anova <- aov(dataset_nomissing_anova$lnwealth ~ dataset_nomissing_anova$abortion) 
 
 
 summary(anova)
-boxplot(lnwealth ~ abortion, data = dataset_anova) 
+boxplot(lnwealth ~ abortion, data = dataset_nomissing_anova) 
 
 
 ##################################################################################
 ####################   Figure 2: scatter plot             ####################   
 ##################################################################################
-dataset_nomissing <- na.omit(dataset[, c("lnwealth", "age")])
+dataset_nomissing_nomissing <- na.omit(dataset_nomissing[, c("lnwealth", "age")])
 
-plot(dataset_nomissing$age, dataset_nomissing$lnwealth)
-meany <- mean(dataset_nomissing$age)
-meanx <- mean(dataset_nomissing$lnwealth)
+plot(dataset_nomissing_nomissing$age, dataset_nomissing_nomissing$lnwealth)
+meany <- mean(dataset_nomissing_nomissing$age)
+meanx <- mean(dataset_nomissing_nomissing$lnwealth)
 abline(h = meanx, col = "black")
 abline(v = meany, col = "black")
-linear_relationship <- lm(lnwealth ~ age, data =dataset_nomissing) 
+linear_relationship <- lm(lnwealth ~ age, data =dataset_nomissing_nomissing) 
 summary(linear_relationship)
 abline(linear_relationship, col = "red")
 
@@ -74,7 +67,7 @@ abline(linear_relationship, col = "red")
 ####################  Figure 3: residual plot                ####################   
 ##################################################################################
 # Plot the residuals
-plot(dataset_nomissing$age, residuals(linear_relationship))
+plot(dataset_nomissing_nomissing$age, residuals(linear_relationship))
 
 # Add a horizontal line at zero to indicate the baseline
 abline(h = 0, col = "red")
@@ -83,6 +76,6 @@ abline(h = 0, col = "red")
 ##################################################################################
 ####################  Table 2: contingency table                ####################   
 ##################################################################################
-table(dataset$age, dataset$wealth)
+table(dataset_nomissing$age, dataset_nomissing$wealth)
 
-chisq.test(table(dataset$christian, dataset$abortion))
+chisq.test(table(dataset_nomissing$christian, dataset_nomissing$abortion))

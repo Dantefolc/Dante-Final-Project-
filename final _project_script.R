@@ -24,7 +24,7 @@ View(dataset)
 ##################################################################################
 ############### Table 1: descriptive statistics    ####################   
 ##################################################################################
-dataset$lnwealth <- log(dataset$wealth)
+dataset$lnwealth <- log(dataset$wealth+1)
 dataset_nomissing <- na.omit(dataset)
 
 
@@ -52,9 +52,8 @@ boxplot(lnwealth ~ abortion, data = dataset_nomissing)
 ##################################################################################
 ####################   Figure 2: scatter plot             ####################   
 ##################################################################################
-dataset_nomissing_nomissing <- na.omit(dataset_nomissing[, c("lnwealth", "age")])
 
-plot(dataset_nomissing_nomissing$age, dataset_nomissing_nomissing$lnwealth)
+plot(dataset_nomissing$age, dataset_nomissing$lnwealth)
 meany <- mean(dataset_nomissing_nomissing$age)
 meanx <- mean(dataset_nomissing_nomissing$lnwealth)
 abline(h = meanx, col = "black")

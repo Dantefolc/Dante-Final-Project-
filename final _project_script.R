@@ -25,7 +25,7 @@ View(dataset)
 ############### Table 1: descriptive statistics    ####################   
 ##################################################################################
 dataset$lnwealth <- log(dataset$wealth)
-dataset_nomissing <- na.omit(dataset_nomissing[, c("wealth", "age", "christian",  "lnwealth", "abortion")])
+dataset_nomissing <- na.omit(dataset)
 
 
 table(dataset_nomissing$abortion)
@@ -42,11 +42,11 @@ sd(dataset_nomissing$wealth)
 
 
 
-anova <- aov(dataset_nomissing_anova$lnwealth ~ dataset_nomissing_anova$abortion) 
+anova <- aov(dataset_nomissing$lnwealth ~ dataset_nomissing$abortion) 
 
 
 summary(anova)
-boxplot(lnwealth ~ abortion, data = dataset_nomissing_anova) 
+boxplot(lnwealth ~ abortion, data = dataset_nomissing) 
 
 
 ##################################################################################

@@ -28,11 +28,11 @@ dataset$lnwealth <- log(dataset$wealth+1)
 dataset_nomissing <- na.omit(dataset)
 
 
-table(dataset_nomissing$abortion)
+table(dataset_nomissing$gun_policy)
+table(dataset_nomissing$christian)
 
-
-summary(dataset_nomissing$wealth)
-sd(dataset_nomissing$wealth)
+summary(dataset_nomissing$age)
+sd(dataset_nomissing$age)
 
 
 
@@ -75,6 +75,6 @@ abline(h = 0, col = "red")
 ##################################################################################
 ####################  Table 2: contingency table                ####################   
 ##################################################################################
-table(dataset_nomissing$age, dataset_nomissing$wealth)
+table(dataset_nomissing$christian, dataset_nomissing$abortion)
 
 chisq.test(table(dataset_nomissing$christian, dataset_nomissing$abortion))

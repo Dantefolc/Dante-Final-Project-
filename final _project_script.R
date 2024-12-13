@@ -54,11 +54,11 @@ boxplot(lnwealth ~ abortion, data = dataset_nomissing)
 ##################################################################################
 
 plot(dataset_nomissing$age, dataset_nomissing$lnwealth)
-meany <- mean(dataset_nomissing_nomissing$age)
-meanx <- mean(dataset_nomissing_nomissing$lnwealth)
+meany <- mean(dataset_nomissing$age)
+meanx <- mean(dataset_nomissing$lnwealth)
 abline(h = meanx, col = "black")
 abline(v = meany, col = "black")
-linear_relationship <- lm(lnwealth ~ age, data =dataset_nomissing_nomissing) 
+linear_relationship <- lm(lnwealth ~ age, data =dataset_nomissing) 
 summary(linear_relationship)
 abline(linear_relationship, col = "red")
 
@@ -66,7 +66,7 @@ abline(linear_relationship, col = "red")
 ####################  Figure 3: residual plot                ####################   
 ##################################################################################
 # Plot the residuals
-plot(dataset_nomissing_nomissing$age, residuals(linear_relationship))
+plot(dataset_nomissing$age, residuals(linear_relationship))
 
 # Add a horizontal line at zero to indicate the baseline
 abline(h = 0, col = "red")
